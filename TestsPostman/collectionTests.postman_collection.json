@@ -1,0 +1,33 @@
+{
+	"variables": [],
+	"info": {
+		"name": "collectionTests",
+		"_postman_id": "6f042803-15e3-9a19-022e-6698237d1c29",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:9090/AdminProduits",
+			"request": {
+				"url": "http://localhost:9090/AdminProduits",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9090/OrdreProduits",
+			"request": {
+				"url": "http://localhost:9090/OrdreProduits",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
