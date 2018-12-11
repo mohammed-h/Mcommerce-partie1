@@ -2,6 +2,7 @@ package com.ecommerce.microcommerce.web.controller;
 
 import com.ecommerce.microcommerce.dao.ProductDao;
 import com.ecommerce.microcommerce.model.Product;
+import com.ecommerce.microcommerce.web.exceptions.ProduitGratuitException;
 import com.ecommerce.microcommerce.web.exceptions.ProduitIntrouvableException;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
@@ -116,10 +117,15 @@ public class ProductController {
 
         List<Product> produits = productDao.findAll();
 
-        Map<Product,Integer> map  = produits.stream().collect(Collectors.toMap(x -> x , x -> x.getPrix() - x.getPrixAchat()));
+        Map<Product,Integer> map  = produits.stream().collect(Collectors.toMap(x -> x , x ->  x.getPrix() - x.getPrixAchat()));
+
+        map.forEach((product, marge) -> {
+            if(product.getPrix()==0){
+                throw new ProduitGratuitException("Le produit avec l'id " + product.getId() + " est gratuit, le prix de vente est de 0.");
+            }
+        });
 
         return new MappingJacksonValue(map);
-
     }
 
 
