@@ -122,4 +122,18 @@ public class ProductController {
 
     }
 
+
+
+    //Trier les produit par ordre alphabétique du nom
+
+    @RequestMapping(value = "/OrdreProduits", method = RequestMethod.GET)
+
+    public MappingJacksonValue trierProduitsParOrdreAlphabetique() {
+
+        List<Product> produits = productDao.findAllByOrderByNomAsc();
+
+        return new MappingJacksonValue(produits);
+    }
+
+
 }
